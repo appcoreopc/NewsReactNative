@@ -25,6 +25,14 @@ export const Tabs = createMaterialTopTabNavigator({
     }
 });
 
+const MenuImage = ({navigation}) => {
+    if(!navigation.state.isDrawerOpen){
+        return <Image source={require('../assets/menu-button.png')}/>
+    }else{
+        return <Image source={require('../assets/left-arrow.png')}/>
+    }
+}
+
 const DrawerNavigator = createDrawerNavigator({
     Home:{
         screen: Tabs
@@ -46,7 +54,8 @@ export const StackNavigator = createStackNavigator({
         headerLeft: 
         <TouchableOpacity  onPress={
             () => {navigation.dispatch(DrawerActions.toggleDrawer())} 
-        }>        
+        }>     
+         <MenuImage style="styles.bar" navigation={navigation}/>
         </TouchableOpacity>,
         headerStyle: {
             backgroundColor: '#333',
@@ -57,3 +66,5 @@ export const StackNavigator = createStackNavigator({
         }        
     })
 });
+
+
