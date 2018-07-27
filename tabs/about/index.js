@@ -6,12 +6,12 @@ import {
   View
 } from 'react-native';
 
-export default class Home extends Component{
+export default class About extends Component{
   render() {
     return (
       <View>
         <Text>
-         Home
+          About Us
         </Text>
       </View>
     );

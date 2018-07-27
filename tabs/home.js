@@ -1,17 +1,17 @@
-
 import React, { Component } from 'react';
 import {createStackNavigator, createDrawerNavigator, createMaterialTopTabNavigator} from 'react-navigation';
 import { DrawerActions } from 'react-navigation';
-import {View,Text,StyleSheet,Platform,TouchableOpacity,Image,StatusBar} from 'react-native';
+import {View, Text, StyleSheet, Platform,TouchableOpacity, Image, StatusBar} from 'react-native';
 
 import Home from './home/index';
 import Settings from './settings/index';
+import About from './about/index';
+import DrawerScreen from './common/drawer';
 
-
-export default Tabs = createMaterialTopTabNavigator({
+export const Tabs = createMaterialTopTabNavigator({
     Home: Home,
-    About: Settings,
-    Contact: Settings
+    About: About,
+    Settings: Settings
 },{
     tabBarOptions: {
         activeTintColor: '#000',
@@ -23,4 +23,37 @@ export default Tabs = createMaterialTopTabNavigator({
             backgroundColor: '#000',
         },
     }
+});
+
+const DrawerNavigator = createDrawerNavigator({
+    Home:{
+        screen: Tabs
+    }
+},{
+    initialRouteName: 'Home',
+    contentComponent: DrawerScreen,
+    drawerWidth: 300
+});
+
+export const StackNavigator = createStackNavigator({    
+    //important: key and screen name (i.e. DrawerNavigator) should be same while using the drawer navigator inside stack navigator.
+   DrawerNavigator:{
+        screen: DrawerNavigator
+    }
+},{
+    navigationOptions: ({ navigation }) => ({
+        title: 'ReactNavigation',  // Title to appear in status bar
+        headerLeft: 
+        <TouchableOpacity  onPress={
+            () => {navigation.dispatch(DrawerActions.toggleDrawer())} 
+        }>        
+        </TouchableOpacity>,
+        headerStyle: {
+            backgroundColor: '#333',
+        },
+        headerTintColor: '#fff',
+        headerTitleStyle: {
+            fontWeight: 'bold',
+        }        
+    })
 });
