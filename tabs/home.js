@@ -10,8 +10,8 @@ import DrawerScreen from './common/drawer';
 
 export const Tabs = createMaterialTopTabNavigator({
     Home: Home,
-    About: About,
-    Settings: Settings
+    Settings: Settings,
+    About: About
 },{
     tabBarOptions: {
         activeTintColor: '#000',
@@ -50,7 +50,7 @@ export const StackNavigator = createStackNavigator({
     }
 },{
     navigationOptions: ({ navigation }) => ({
-        title: 'ReactNavigation',  // Title to appear in status bar
+        title: 'News App',  // Title to appear in status bar
         headerLeft: 
         <TouchableOpacity  onPress={
             () => {navigation.dispatch(DrawerActions.toggleDrawer())} 
