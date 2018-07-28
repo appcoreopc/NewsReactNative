@@ -44,8 +44,7 @@ export default class Home extends Component{
     try {
       let response = await fetch(apiUri);
       let responseJson = await response.json();
-      await alert(responseJson.totalResults);
-      await alert(responseJson.articles[0].title);
+      
       this.setState({ 
         data : responseJson.articles
       });
@@ -63,11 +62,11 @@ export default class Home extends Component{
   
   render() {
     return (
-     
-      
+
       <FlatList
         data={this.state.data}
-        renderItem={({ item }) => (
+        keyExtractor={item => item.id}
+         renderItem={({ item }) => (
           <ListItem
             roundAvatar
             title={`${item.title} `}
