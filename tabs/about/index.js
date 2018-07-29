@@ -13,15 +13,17 @@ class About extends Component{
   
   navigateToScreen = (route) => () => {
     const navigateAction = NavigationActions.navigate({
-      routeName: route
+     routeName: route,
+     params: { newsId : 'Hello' }
     });
+  
     this.props.navigation.dispatch(navigateAction);   
   }
 
   render() {
     return (
       <View>        
-        <Text>About us </Text>
+        <Text>About us. x</Text>
            <Image source={
              require('../../assets/menu-button.png')
              }/>
