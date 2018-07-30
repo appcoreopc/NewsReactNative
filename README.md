@@ -1,7 +1,8 @@
 # NewsReactNative
 
 
-A news reader written in react-native. 
+A simple news reader written in react-native. It fires off default phone web browser to visit link. 
+This apps showcase how to do drawer, top material navigator and other components like flatlistm, listview and linking. 
 
 
 Sample screen shots 
