@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 import {
-  Platform,
-  StyleSheet,
-  Text, FlatList, 
-  View
+  Platform, StyleSheet, Text, FlatList, View, Linking
 } from 'react-native';
 
 import { List, ListItem, SearchBar } from "react-native-elements";
@@ -14,11 +11,11 @@ import { DrawerActions, NavigationActions } from 'react-navigation';
 import NewsApiService from '../../services/news';
 
 export default class Home extends Component{
-
+  
   constructor(props) {
-
+    
     super(props);
-
+    
     this.state = {
       loading: false,
       data: [],
@@ -28,30 +25,38 @@ export default class Home extends Component{
       refreshing: false
     };
   }
-
-  navigateToScreen = (route) => () => {
-
-    const navigateAction = NavigationActions.navigate({
-      routeName: 'DetailNews',
-      params : { newsUrl : route }
-    });
-    this.props.navigation.dispatch(navigateAction);   
   
+  navigateToScreen = (route) => () => {
+    
+    Linking.canOpenURL(route).then(supported => {
+      if (supported) {
+        Linking.openURL(route);
+      } else {
+        console.log("Don't know how to open URI: " + route);
+      }
+    });
+    
+    // const navigateAction = NavigationActions.navigate({
+    //   routeName: 'DetailNews',
+    //   params : { newsUrl : route }
+    // });
+    // this.props.navigation.dispatch(navigateAction);   
+    
   }
   
   // async getNewsFeed() 
   // {
   //   let apiUri = "https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=22f66588d55e4db88dabda8f03aa598c";
-    
+  
   //   obj = new NewsApiService();
   //   obj.getNewsFeed();
   // }
   
-
+  
   async getNewsFeed() 
   {
     let apiUri = "https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=22f66588d55e4db88dabda8f03aa598c";
-
+    
     try {
       let response = await fetch(apiUri);
       let responseJson = await response.json();
@@ -59,13 +64,13 @@ export default class Home extends Component{
       this.setState({ 
         data : responseJson.articles
       });
-            
+      
       return responseJson.articles;
     } catch (error) {
       console.error(error);
     }
   }
-
+  
   componentDidMount() { 
     
     this.getNewsFeed();     
@@ -73,18 +78,18 @@ export default class Home extends Component{
   
   render() {
     return (
-
+      
       <FlatList
-        data={this.state.data}
-        keyExtractor={item => item.id}
-         renderItem={({ item }) => (
-          <ListItem 
-            roundAvatar onPress={this.navigateToScreen(item.url)}
-            title={`${item.title} `}
-            subtitle={item.description}
-            avatar={{ uri: item.urlToImage }}
-          />
-        )}
+      data={this.state.data}
+      keyExtractor={item => item.id}
+      renderItem={({ item }) => (
+        <ListItem 
+        roundAvatar onPress={this.navigateToScreen(item.url)}
+        title={`${item.title} `}
+        subtitle={item.description}
+        avatar={{ uri: item.urlToImage }}
+        />
+      )}
       />
     );
   }
