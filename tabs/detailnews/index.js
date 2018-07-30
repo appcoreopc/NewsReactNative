@@ -3,29 +3,50 @@ import {
   Platform,
   StyleSheet,
   Text,
-  View
+  View, WebView
 } from 'react-native';
+
 
 export default class DetailNews extends Component{
 
   constructor(props) {
-    super(props);
-
-    console.log(props);
+    super(props);    
   }
 
+  componentDidMount() { 
+  }
+  
   loadDetailPage = (newsId) => {    
     // uses id to pull from api //
   }
 
   render() {
     return (
-      <View>
-        <Text>
-         Loading detail news from newsapi service. Render params :-
-         {this.props.navigation.state.params.newsId}
-        </Text>
+      <View style={styles.container}>
+     
+        <WebView source={{uri : this.props.navigation.state.params.newsUrl}}
+        style={styles.video}
+        javaScriptEnabled={true}
+        domStorageEnabled={true}
+        startInLoadingState={true} />
+
       </View>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    alignSelf: 'stretch',
+    justifyContent: 'space-between',
+
+  },
+  video: {
+    marginTop: 20,
+    alignSelf: 'stretch',
+    width: 320,
+    flex: 1
+  }
+});
