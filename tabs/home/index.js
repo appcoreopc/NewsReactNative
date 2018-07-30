@@ -31,7 +31,6 @@ export default class Home extends Component{
 
   navigateToScreen = (route) => () => {
 
-    console.log(route);
     const navigateAction = NavigationActions.navigate({
       routeName: 'DetailNews',
       params : { newsUrl : route }

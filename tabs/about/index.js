@@ -23,12 +23,12 @@ class About extends Component{
   render() {
     return (
       <View>        
-        <Text>About us. x</Text>
+        <Text>About us</Text>
            <Image source={
              require('../../assets/menu-button.png')
              }/>
 
-            <Button title="click me!" onPress={ this.navigateToScreen('DetailNews')}></Button>
+           
      </View>
     );
   }
