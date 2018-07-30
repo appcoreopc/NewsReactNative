@@ -26,7 +26,13 @@ export default class Home extends Component{
       refreshing: false
     };
   }
-  
+
+  navigateToScreen = (route) => () => {
+    const navigateAction = NavigationActions.navigate({
+      routeName: route
+    });
+    this.props.navigation.dispatch(navigateAction);   
+  }
   
   // async getNewsFeed() 
   // {
@@ -67,7 +73,7 @@ export default class Home extends Component{
         data={this.state.data}
         keyExtractor={item => item.id}
          renderItem={({ item }) => (
-          <ListItem
+          <ListItem 
             roundAvatar
             title={`${item.title} `}
             subtitle={item.description}
