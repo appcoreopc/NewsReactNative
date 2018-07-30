@@ -7,6 +7,8 @@ import {
 } from 'react-native';
 
 import { List, ListItem, SearchBar } from "react-native-elements";
+import {createStackNavigator, createDrawerNavigator, createMaterialTopTabNavigator} from 'react-navigation';
+import { DrawerActions, NavigationActions } from 'react-navigation';
 
 // do not use {} here - no need to deconstruct it //
 import NewsApiService from '../../services/news';
@@ -28,10 +30,14 @@ export default class Home extends Component{
   }
 
   navigateToScreen = (route) => () => {
+
+    console.log(route);
     const navigateAction = NavigationActions.navigate({
-      routeName: route
+      routeName: 'DetailNews',
+      params : { newsUrl : route }
     });
     this.props.navigation.dispatch(navigateAction);   
+  
   }
   
   // async getNewsFeed() 
@@ -74,7 +80,7 @@ export default class Home extends Component{
         keyExtractor={item => item.id}
          renderItem={({ item }) => (
           <ListItem 
-            roundAvatar
+            roundAvatar onPress={this.navigateToScreen(item.url)}
             title={`${item.title} `}
             subtitle={item.description}
             avatar={{ uri: item.urlToImage }}
