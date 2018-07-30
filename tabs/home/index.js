@@ -35,23 +35,8 @@ export default class Home extends Component{
         console.log("Don't know how to open URI: " + route);
       }
     });
-    
-    // const navigateAction = NavigationActions.navigate({
-    //   routeName: 'DetailNews',
-    //   params : { newsUrl : route }
-    // });
-    // this.props.navigation.dispatch(navigateAction);   
-    
+  
   }
-  
-  // async getNewsFeed() 
-  // {
-  //   let apiUri = "https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=22f66588d55e4db88dabda8f03aa598c";
-  
-  //   obj = new NewsApiService();
-  //   obj.getNewsFeed();
-  // }
-  
   
   async getNewsFeed() 
   {

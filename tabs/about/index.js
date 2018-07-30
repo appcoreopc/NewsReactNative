@@ -2,23 +2,39 @@ import React, { Component } from 'react';
 import {
   Platform,
   StyleSheet,
-  Text, Button,
+  Text, Button, FlatList,
   View, Image, Linking
 } from 'react-native';
 
 import { NavigationActions } from 'react-navigation';
-import PropTypes from 'prop-types';
+import { List, ListItem, SearchBar } from "react-native-elements";
 
 class About extends Component{
   
   render() {
+    
     return (
       <View>        
-        <Text>About us</Text>
-           <Image source={
-             require('../../assets/menu-button.png')
-             }/>         
-     </View>
+      
+      <ListItem 
+      roundAvatar 
+      title='Auto'
+      subtitle='Auto Update Subtitle' hideChevron='true'     
+      />     
+      
+      <ListItem 
+      roundAvatar 
+      title='Auto'
+      subtitle='Auto Update Subtitle' hideChevron='true' 
+      />     
+      
+      <ListItem 
+      roundAvatar 
+      title='Auto'
+      subtitle='Auto Update Subtitle' hideChevron='true' 
+      />     
+      
+      </View>
     );
   }
 }
