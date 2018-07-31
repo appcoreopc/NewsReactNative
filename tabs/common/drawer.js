@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
 import {NavigationActions} from 'react-navigation';
 import PropTypes from 'prop-types';
-import {ScrollView, Text, View} from 'react-native';
+import {ScrollView, Text, FlatList, View} from 'react-native';
 import { DrawerActions } from 'react-navigation';
+import { List, ListItem, SearchBar } from "react-native-elements";
 
 class DrawerScreen extends Component {
   navigateToScreen = (route) => () => {
@@ -12,30 +13,32 @@ class DrawerScreen extends Component {
     this.props.navigation.dispatch(navigateAction);
     this.props.navigation.dispatch(DrawerActions.closeDrawer())
   }
-
+  
   render () {
     return (
-      <View>
-        <ScrollView>
-          <View>
-            <View>
-              <Text onPress={this.navigateToScreen('Home')}>
-                Home
-              </Text>
-            </View>
-            <View>
-              <Text onPress={this.navigateToScreen('About')}>
-               About
-              </Text>
-            </View>
-            <View>
-              <Text onPress={this.navigateToScreen('Settings')}>
-              Contact
-              </Text>
-            </View>
-          </View>
-        </ScrollView>
-      </View>
+      
+      <View>        
+      
+      <ListItem 
+      roundAvatar 
+      title='Home' onPress={this.navigateToScreen('Home')}
+      subtitle='Home' hideChevron='true' 
+      />     
+      
+      <ListItem 
+      roundAvatar 
+      title='Settings' onPress={this.navigateToScreen('Settings')}
+      subtitle='settings' hideChevron='true' 
+      />     
+      
+      <ListItem 
+      roundAvatar 
+      title='About' onPress={this.navigateToScreen('About')}
+      subtitle='About' hideChevron='true' 
+      />     
+      
+      </View>      
+      
     );
   }
 }
